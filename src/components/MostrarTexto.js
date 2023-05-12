@@ -97,7 +97,7 @@ function MostrarTexto() {
               ) : (
                 <span onClick={() => cargarTexto(texto.id)}>
                   <h3>{texto.titulo}</h3>
-                  {texto.texto}
+                  {texto.texto.length > 50 ? `${texto.texto.slice(0, 50)}...` : texto.texto}
                 </span>
               )}
             </div>

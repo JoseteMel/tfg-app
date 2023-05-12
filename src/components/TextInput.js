@@ -15,6 +15,23 @@ function TextInput() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Validar el título y el texto
+    if (title.length > 50) {
+      setMessage("El título no debe tener más de 50 caracteres.");
+      return;
+    }
+
+    if (text.length > 10000) {
+      setMessage("El texto no debe tener más de 10000 caracteres.");
+      return;
+    }
+
+    if (text.trim() === "") {
+      setMessage("No puedes guardar un texto vacío.");
+      return;
+    }
+
     fetch("http://localhost:8080/text", {
       method: "POST",
       headers: {
