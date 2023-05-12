@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function TextInput() {
   const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleChange = (event) => {
+  const handleTextChange = (event) => {
     setText(event.target.value);
+  };
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -15,7 +20,7 @@ function TextInput() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ texto: text }),
+      body: JSON.stringify({ titulo: title, texto: text }),
     })
       .then((response) => {
         if (response.ok) {
@@ -28,15 +33,22 @@ function TextInput() {
         setMessage("Hubo un error al enviar el texto.");
       });
 
-      console.log("Objeto JSON enviado:", JSON.stringify({ text }));
+    console.log("Objeto JSON enviado:", JSON.stringify({ title, text }));
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label>
-          <textarea value={text} onChange={handleChange} />
+          Título:
+          <input type="text" value={title} onChange={handleTitleChange} />
         </label>
+        <br />
+        <label>
+          Texto:
+          <textarea value={text} onChange={handleTextChange} />
+        </label>
+        <br />
         <button type="submit">Guardar</button>
       </form>
       <p>{message}</p>
