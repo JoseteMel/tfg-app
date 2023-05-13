@@ -22,11 +22,6 @@ function TextInput() {
       return;
     }
 
-    if (text.length > 10000) {
-      setMessage("El texto no debe tener más de 10000 caracteres.");
-      return;
-    }
-
     if (text.trim() === "") {
       setMessage("No puedes guardar un texto vacío.");
       return;
@@ -59,11 +54,13 @@ function TextInput() {
         <label>
           Título:
           <input type="text" value={title} onChange={handleTitleChange} />
+          <span>{title.length}/50</span>
         </label>
         <br />
         <label>
           Texto:
           <textarea value={text} onChange={handleTextChange} />
+          <span>{text.length}</span>
         </label>
         <br />
         <button type="submit">Guardar</button>
@@ -72,5 +69,6 @@ function TextInput() {
     </div>
   );
 }
+
 
 export default TextInput;

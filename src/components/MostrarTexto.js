@@ -57,21 +57,24 @@ function MostrarTexto() {
   }
 
   function eliminarTexto(textoId) {
-    fetch(`http://localhost:8080/text/${textoId}`, {
-      method: 'DELETE'
-    })
-      .then(() => {
-        // Actualizar la lista de textos
-        obtenerTextos();
-        // Restablecer los valores de edición
-        setTextoEditado('');
-        setTituloEditado('');
-        setEditandoTextoId(null);
+    if (window.confirm('¿Estás seguro de que deseas eliminar este texto?')) {
+      fetch(`http://localhost:8080/text/${textoId}`, {
+        method: 'DELETE'
       })
-      .catch(error => {
-        console.error('Error al eliminar el texto:', error);
-      });
+        .then(() => {
+          // Actualizar la lista de textos
+          obtenerTextos();
+          // Restablecer los valores de edición
+          setTextoEditado('');
+          setTituloEditado('');
+          setEditandoTextoId(null);
+        })
+        .catch(error => {
+          console.error('Error al eliminar el texto:', error);
+        });
+    }
   }
+  
 
   function cancelarEdicion() {
     setTextoEditado('');
