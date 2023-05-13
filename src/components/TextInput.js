@@ -39,6 +39,10 @@ function TextInput() {
       .then((response) => {
         if (response.ok) {
           setMessage("¡Texto enviado con éxito!");
+          setTitle("");
+          setText("");
+          // Colocar el cursor en el campo de título
+          document.getElementById("title-input").focus();
         } else {
           setMessage("Hubo un error al enviar el texto.");
         }
@@ -50,19 +54,25 @@ function TextInput() {
     console.log("Objeto JSON enviado:", JSON.stringify({ title, text }));
   };
 
+  const handleKeyDown = (event) => {
+    if (event.ctrlKey && event.key === "Enter") {
+      handleSubmit(event);
+    }
+  };
+
   // Renderizar el componente
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label>
           Título:
-          <input type="text" value={title} onChange={handleTitleChange} />
+          <input type="text" value={title} onChange={handleTitleChange} autoFocus id="title-input" />
           <span>{title.length}/50</span>
         </label>
         <br />
         <label>
           Texto:
-          <textarea value={text} onChange={handleTextChange} />
+          <textarea value={text} onChange={handleTextChange} onKeyDown={handleKeyDown} />
           <span>{text.length}</span>
         </label>
         <br />

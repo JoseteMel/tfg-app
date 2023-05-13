@@ -8,6 +8,8 @@ function MostrarTexto() {
   const [message, setMessage] = useState("");
   const [tituloOriginal, setTituloOriginal] = useState('');
   const [textoOriginal, setTextoOriginal] = useState('');
+  const [fechaCreacion, setFechaCreacion] = useState('');
+  const [fechaModificacion, setFechaModificacion] = useState('');
 
   // Obtener la lista de textos
   function obtenerTextos() {
@@ -36,6 +38,8 @@ function MostrarTexto() {
         setTituloEditado(data.titulo);
         setTextoEditado(data.texto);
         setEditandoTextoId(textoId);
+        setFechaCreacion(data.fechaCreacion);
+        setFechaModificacion(data.fechaModificacion);
       })
       .catch(error => {
         console.error('Error al recibir el texto:', error);
@@ -78,11 +82,12 @@ function MostrarTexto() {
       .catch(error => {
         console.error('Error al actualizar el texto:', error);
       });
+    document.getElementById("title-input").focus();
   }
   
   // Elimitar el texto seleccionado
   function eliminarTexto(textoId) {
-    if (window.confirm('¿Estás seguro de que deseas eliminar este texto?')) {
+    if (textoEditadoId !== null && window.confirm('¿Estás seguro de que deseas eliminar este texto?')) {
       fetch(`http://localhost:8080/text/${textoId}`, {
         method: 'DELETE'
       })
@@ -100,12 +105,13 @@ function MostrarTexto() {
           console.error('Error al eliminar el texto:', error);
         });
     }
+    document.getElementById("title-input").focus();
   }
 
   // Eliminar el texto al pulsar la tecla "Supr"
   useEffect(() => {
     function handleEscape(event) {
-      if (event.key === 'Delete') {
+      if (textoEditadoId !== null && event.key === 'Delete') {
         eliminarTexto(textoEditadoId);
       }
     }
@@ -128,12 +134,13 @@ function MostrarTexto() {
       setTextoEditado('');
       setEditandoTextoId(null);
     }
+    document.getElementById("title-input").focus();
   }
 
   // Cancelar la edición al pulsar la tecla "Esc"
   useEffect(() => {
     function handleEscape(event) {
-      if (event.key === 'Escape') {
+      if (textoEditadoId !== null && event.key === 'Escape') {
         cancelarEdicion();
       }
     }
@@ -153,8 +160,12 @@ function MostrarTexto() {
             <div>
               {textoEditadoId === texto.id ? (
                 <div>
-                  <input type="text" value={tituloEditado} onChange={event => setTituloEditado(event.target.value)} /><span>{tituloEditado.length}/50</span> <br />
+                  <input type="text" value={tituloEditado} onChange={event => setTituloEditado(event.target.value)} autoFocus /><span>{tituloEditado.length}/50</span> <br />
                   <textarea value={textoEditado} onChange={event => setTextoEditado(event.target.value)} /><span>{textoEditado.length}</span>  <br />
+                  <p>
+                    <span>Creado: {fechaCreacion}</span><br />
+                    {fechaCreacion !== fechaModificacion && <span>Modificado: {fechaModificacion}</span>}
+                  </p>
                   <p>{message}</p>
                   <button onClick={guardarTextoEditado}>Guardar cambios</button>
                   <button onClick={cancelarEdicion}>Cancelar</button>
@@ -167,7 +178,11 @@ function MostrarTexto() {
                   ) : (
                     <h3><i>(Sin título)</i></h3>
                   )}
-                  {texto.texto.length > 50 ? `${texto.texto.slice(0, 50)}...` : texto.texto}
+                  <p>{texto.texto.length > 50 ? `${texto.texto.slice(0, 50)}...` : texto.texto}</p>
+                  <p>
+                    <span>Creado: {texto.fechaCreacion}</span><br />
+                    {fechaCreacion !== fechaModificacion && <span>Modificado: {texto.fechaModificacion}</span>}
+                  </p>
                 </span>
               )}
             </div>
