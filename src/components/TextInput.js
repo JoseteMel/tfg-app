@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// Componente para introducir un texto
 function TextInput() {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
@@ -27,6 +28,7 @@ function TextInput() {
       return;
     }
 
+    // Enviar el texto al servidor
     fetch("http://localhost:8080/text", {
       method: "POST",
       headers: {
@@ -48,6 +50,7 @@ function TextInput() {
     console.log("Objeto JSON enviado:", JSON.stringify({ title, text }));
   };
 
+  // Renderizar el componente
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -69,6 +72,5 @@ function TextInput() {
     </div>
   );
 }
-
 
 export default TextInput;
