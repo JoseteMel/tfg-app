@@ -61,12 +61,19 @@ function MostrarTexto() {
     }
   
     // Enviar el texto editado al servidor
+    const fechaActual = new Date();
+    const fechaModificacionFormateada = textoEditadoId ? fechaActual.toISOString() : '';
+
     fetch(`http://localhost:8080/text/${textoEditadoId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ titulo: tituloEditado, texto: textoEditado })
+      body: JSON.stringify({ 
+        titulo: tituloEditado, 
+        texto: textoEditado,
+        fechaModificacion: fechaModificacionFormateada
+       })
     })
       .then(response => response.json())
       .then(() => {
@@ -158,8 +165,8 @@ function MostrarTexto() {
                   <input type="text" value={tituloEditado} onChange={event => setTituloEditado(event.target.value)} autoFocus /><span>{tituloEditado.length}/50</span> <br />
                   <textarea value={textoEditado} onChange={event => setTextoEditado(event.target.value)} /><span>{textoEditado.length}</span>  <br />
                   <p>
-                    <span>Creado: {fechaCreacion}</span><br />
-                    {fechaCreacion !== fechaModificacion && <span>Modificado: {fechaModificacion}</span>}
+                    <span>Creado: {texto.fechaCreacion}</span><br />
+                    {texto.fechaCreacion !== texto.fechaModificacion && <span>Modificado: {texto.fechaModificacion}</span>}
                   </p>
                   <p>{message}</p>
                   <button onClick={guardarTextoEditado}>Guardar cambios</button>
@@ -176,7 +183,7 @@ function MostrarTexto() {
                   <p>{texto.texto.length > 50 ? `${texto.texto.slice(0, 50)}...` : texto.texto}</p>
                   <p>
                     <span>Creado: {texto.fechaCreacion}</span><br />
-                    {fechaCreacion !== fechaModificacion && <span>Modificado: {texto.fechaModificacion}</span>}
+                    {texto.fechaCreacion !== texto.fechaModificacion && <span>Modificado: {texto.fechaModificacion}</span>}
                   </p>
                 </span>
               )}
