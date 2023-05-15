@@ -85,7 +85,7 @@ function MostrarTexto() {
     document.getElementById("title-input").focus();
   }
   
-  // Elimitar el texto seleccionado
+  // Eliminar el texto seleccionado
   function eliminarTexto(textoId) {
     if (textoEditadoId !== null && window.confirm('¿Estás seguro de que deseas eliminar este texto?')) {
       fetch(`http://localhost:8080/text/${textoId}`, {
@@ -107,19 +107,6 @@ function MostrarTexto() {
     }
     document.getElementById("title-input").focus();
   }
-
-  // Eliminar el texto al pulsar la tecla "Supr"
-  useEffect(() => {
-    function handleEscape(event) {
-      if (textoEditadoId !== null && event.key === 'Delete') {
-        eliminarTexto(textoEditadoId);
-      }
-    }
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [textoEditadoId]);
   
   // Cancelar la edición
   function cancelarEdicion() {
@@ -128,27 +115,35 @@ function MostrarTexto() {
         setTituloEditado(tituloOriginal);
         setTextoEditado(textoOriginal);
         setEditandoTextoId(null); // cerrar bloque de edición de texto
+        document.getElementById("title-input").focus();
       }
     } else {
       setTituloEditado('');
       setTextoEditado('');
       setEditandoTextoId(null);
     }
-    document.getElementById("title-input").focus();
   }
 
-  // Cancelar la edición al pulsar la tecla "Esc"
-  useEffect(() => {
-    function handleEscape(event) {
-      if (textoEditadoId !== null && event.key === 'Escape') {
-        cancelarEdicion();
+    // Atajos de teclado para eliminar y cancelar la edición
+    useEffect(() => {
+      function handleEscape(event) {
+        
+        // Eliminar el texto con la tecla Delete
+        if (textoEditadoId !== null && event.key === 'Delete') {
+          eliminarTexto(textoEditadoId);
+        }
+
+        // Cancelar la edición con la tecla Escape
+        if (textoEditadoId !== null && event.key === 'Escape') {
+          cancelarEdicion();
+        }
       }
-    }
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [textoEditado, tituloEditado]);
+
+      document.addEventListener('keydown', handleEscape);
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+      };
+    }, [textoEditadoId, textoEditado, tituloEditado]);
   
   // Mostrar la lista de textos
   return (

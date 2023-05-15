@@ -11,18 +11,18 @@ function App() {
   );
 }
 
-function guardarTexto(texto) {
-  fetch('/texto', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({texto: texto})
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
-}
+// function guardarTexto(texto) {
+//   fetch('/texto', {
+//       method: 'POST',
+//       headers: {
+//           'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({texto: texto})
+//   })
+//   .then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(error => console.error(error));
+// }
 
 
 export default App;

@@ -5,6 +5,8 @@ function TextInput() {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  
+  const [textos, setTextos] = useState([]);
 
   const handleTextChange = (event) => {
     setText(event.target.value);
@@ -43,6 +45,7 @@ function TextInput() {
           setText("");
           // Colocar el cursor en el campo de título
           document.getElementById("title-input").focus();
+          window.location.reload(); // Recargar la página
         } else {
           setMessage("Hubo un error al enviar el texto.");
         }
