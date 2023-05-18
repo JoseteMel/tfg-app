@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// Componente para introducir un texto
+// Componente para crear un capítulo
 function NuevoCapitulo() {
   const [texto, setTexto] = useState("");
   const [titulo, setTitulo] = useState("");
@@ -29,7 +29,7 @@ function NuevoCapitulo() {
     }
 
     // Enviar el texto al servidor
-    fetch("http://localhost:8080/text", {
+    fetch("http://localhost:8080/capitulo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,6 @@ function NuevoCapitulo() {
           setTexto("");
           // Colocar el cursor en el campo de título
           document.getElementById("title-input").focus();
-          window.location.reload(); // Recargar la página
         } else {
           setMensaje("Hubo un error al enviar el texto.");
         }
@@ -55,6 +54,7 @@ function NuevoCapitulo() {
     console.log("Objeto JSON enviado:", JSON.stringify({ title: titulo, text: texto }));
   };
 
+  // Enviar el texto al pulsar Ctrl + Intro
   const handleKeyDown = (event) => {
     if (event.ctrlKey && event.key === "Enter") {
       handleSubmit(event);

@@ -1,4 +1,19 @@
-.App {
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.lista-capitulos {
+  grid-column: 1 / span 1;
+}
+
+.lista-personajes {
+  grid-column: 2 / span 1;
+}
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +50,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

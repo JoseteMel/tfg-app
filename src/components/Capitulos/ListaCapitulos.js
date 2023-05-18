@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 function ListaCapitulos() {
   const [capitulos, setCapitulos] = useState([]);
   const [capituloEditadoId, setEditandoCapituloId] = useState(null);
-  const [capituloEditado, setCapituloEditado] = useState('');
-  const [tituloEditado, setTituloEditado] = useState('');
-  const [mensaje, setMensaje] = useState("");
-  const [tituloOriginal, setTituloOriginal] = useState('');
+  const [textoEditado, setTextoEditado] = useState('');
   const [textoOriginal, setTextoOriginal] = useState('');
+  const [tituloEditado, setTituloEditado] = useState('');
+  const [tituloOriginal, setTituloOriginal] = useState('');
   const [fechaCreacion, setFechaCreacion] = useState('');
   const [fechaModificacion, setFechaModificacion] = useState('');
+  const [mensaje, setMensaje] = useState("");
 
-  // Obtener la lista de capítulo
+  // Obtener la lista de capítulos
   function obtenerCapitulos() {
-    fetch('http://localhost:8080/text')
+    fetch('http://localhost:8080/capitulos')
       .then(response => response.json())
       .then(data => {
         setCapitulos(data);
@@ -30,13 +30,13 @@ function ListaCapitulos() {
 
   // Cargar el capítulo seleccionado para editarlo
   function cargarTexto(capituloId) {
-    fetch(`http://localhost:8080/text/${capituloId}`)
+    fetch(`http://localhost:8080/capitulo/${capituloId}`)
       .then(response => response.json())
       .then(data => {
         setTituloOriginal(data.titulo);
         setTextoOriginal(data.texto);
         setTituloEditado(data.titulo);
-        setCapituloEditado(data.texto);
+        setTextoEditado(data.texto);
         setEditandoCapituloId(capituloId);
         setFechaCreacion(data.fechaCreacion);
         setFechaModificacion(data.fechaModificacion);
@@ -44,6 +44,18 @@ function ListaCapitulos() {
       .catch(error => {
         console.error('Error al recibir el capítulo:', error);
       });
+  }
+
+  // Restablecer los campos de edición
+  function reestablecerCampos() {
+    // Actualizar la lista de capítulos
+    obtenerCapitulos();
+    // Restablecer los valores de edición
+    setTituloOriginal('');
+    setTextoOriginal('');
+    setTextoEditado('');
+    setTituloEditado('');
+    setEditandoCapituloId(null);
   }
 
   // Guardar el capítulo editado
@@ -55,7 +67,7 @@ function ListaCapitulos() {
       return;
     }
 
-    if (capituloEditado.trim() === "") {
+    if (textoEditado.trim() === "") {
       setMensaje("No puedes guardar un capítulo vacío.");
       return;
     }
@@ -64,69 +76,52 @@ function ListaCapitulos() {
     const fechaActual = new Date();
     const fechaModificacionFormateada = capituloEditadoId ? fechaActual.toISOString() : '';
 
-    fetch(`http://localhost:8080/text/${capituloEditadoId}`, {
+    fetch(`http://localhost:8080/capitulo/${capituloEditadoId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 
         titulo: tituloEditado, 
-        texto: capituloEditado,
+        texto: textoEditado,
         fechaModificacion: fechaModificacionFormateada
        })
     })
       .then(response => response.json())
       .then(() => {
-        // Actualizar la lista de capítulos
-        obtenerCapitulos();
-        // Restablecer los valores de edición
-        setTituloOriginal('');
-        setTextoOriginal('');
-        setCapituloEditado('');
-        setTituloEditado('');
-        setEditandoCapituloId(null);
+        reestablecerCampos();
       })
       .catch(error => {
         console.error('Error al actualizar el capítulo:', error);
       });
-    document.getElementById("title-input").focus();
   }
   
   // Eliminar el capítulo seleccionado
-  function eliminarCapitulo(caapituloId) {
+  function eliminarCapitulo(capituloId) {
     if (capituloEditadoId !== null && window.confirm('¿Estás seguro de que deseas eliminar este capítulo?')) {
-      fetch(`http://localhost:8080/text/${caapituloId}`, {
+      fetch(`http://localhost:8080/capitulo/${capituloId}`, {
         method: 'DELETE'
       })
         .then(() => {
-          // Actualizar la lista de capítulos
-          obtenerCapitulos();
-          // Restablecer los valores de edición
-          setTituloOriginal('');
-          setTextoOriginal('');
-          setCapituloEditado('');
-          setTituloEditado('');
-          setEditandoCapituloId(null);
+          reestablecerCampos();
         })
         .catch(error => {
           console.error('Error al eliminar el capítulo:', error);
         });
     }
-    document.getElementById("title-input").focus();
   }
   
   // Cancelar la edición
   function cancelarEdicion() {
-    if (textoOriginal !== capituloEditado || tituloOriginal !== tituloEditado) {
+    if (textoOriginal !== textoEditado || tituloOriginal !== tituloEditado) {
       if (window.confirm('¿Estás seguro de que deseas cancelar la edición? Perderás los cambios no guardados.')) {
         setTituloEditado(tituloOriginal);
-        setCapituloEditado(textoOriginal);
+        setTextoEditado(textoOriginal);
         setEditandoCapituloId(null); // cerrar bloque de edición de texto
-        document.getElementById("title-input").focus();
       }
     } else {
       setTituloEditado('');
-      setCapituloEditado('');
+      setTextoEditado('');
       setEditandoCapituloId(null);
     }
   }
@@ -150,29 +145,37 @@ function ListaCapitulos() {
       return () => {
         document.removeEventListener('keydown', handleEscape);
       };
-    }, [capituloEditadoId, capituloEditado, tituloEditado]);
-  
+    }, [capituloEditadoId, textoEditado, tituloEditado]);
+
   // Mostrar la lista de capítulos
   return (
     <div>
-      <h2>Capítulos guardados en la base de datos:</h2>
+      <h2>{capitulos.length > 0 ? 'Capítulos:' : 'No hay capítulos'}</h2>
       <ul>
         {Array.isArray(capitulos) && capitulos.map(capitulo => (
           <li key={capitulo.id}>
             <div>
               {capituloEditadoId === capitulo.id ? (
-                <div>
+                <form onSubmit={event => {
+                  event.preventDefault(); // Evitar recarga de página
+                  guardarCapituloEditado();
+                }} onKeyDown={event => {
+                  if (event.ctrlKey && event.key === 'Enter') {
+                    event.preventDefault(); // Evitar salto de línea
+                    guardarCapituloEditado();
+                  }
+                }}>
                   <input type="text" value={tituloEditado} onChange={event => setTituloEditado(event.target.value)} autoFocus /><span>{tituloEditado.length}/50</span> <br />
-                  <textarea value={capituloEditado} onChange={event => setCapituloEditado(event.target.value)} /><span>{capituloEditado.length}</span>  <br />
+                  <textarea value={textoEditado} onChange={event => setTextoEditado(event.target.value)} /><span>{textoEditado.length}</span>  <br />
                   <p>
                     <span>Creado: {capitulo.fechaCreacion}</span><br />
                     {capitulo.fechaCreacion !== capitulo.fechaModificacion && <span>Modificado: {capitulo.fechaModificacion}</span>}
                   </p>
                   <p>{mensaje}</p>
-                  <button onClick={guardarCapituloEditado}>Guardar cambios</button>
+                  <button type="submit">Guardar cambios</button>
                   <button onClick={cancelarEdicion}>Cancelar</button>
                   <button onClick={() => eliminarCapitulo(capitulo.id)}>Eliminar</button>
-                </div>
+                </form>
               ) : (
                 <span onClick={() => cargarTexto(capitulo.id)}>
                   {capitulo.titulo ? (
@@ -192,7 +195,8 @@ function ListaCapitulos() {
         ))}
       </ul>
     </div>
-  );
+  ); 
+  
 }
 
 export default ListaCapitulos;
