@@ -3,17 +3,20 @@ import NuevoCapitulo from './components/Capitulos/NuevoCapitulo';
 import ListaCapitulos from './components/Capitulos/ListaCapitulos';
 import NuevoPersonaje from './components/Personajes/NuevoPersonaje';
 import ListaPersonajes from './components/Personajes/ListaPersonajes';
+import Notas from './components/Notas/Notas';
+
 import './App.css';
 
 const PantallaInicio = ({ cambiarPantallaCapitulo, cambiarPantallaPersonaje }) => {
   return (
-    <div>
+    <div className='inicio-container'>
       <h1>Inicio</h1>
       <button onClick={cambiarPantallaCapitulo}>Crear un nuevo capítulo</button>
       <button onClick={cambiarPantallaPersonaje}>Crear un nuevo personaje</button>
-      <div className="container">
+      <div className="column-container">
         <div className="lista-capitulos"><ListaCapitulos /></div>
         <div className="lista-personajes"><ListaPersonajes /></div>
+        <div className="notas"><Notas /></div>
       </div>
     </div>  
   );

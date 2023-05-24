@@ -342,7 +342,7 @@ function ListaPersonajes() {
     }, [personajeEditadoId, nombreEditado, apellidosEditado, fechaNacimientoEditado, lugarNacimientoEditado, alturaEditado, complexionEditado, longitudPeloEditado, colorPeloEditado, 
       razaEditado, sexoEditado, personalidadEditado, ocupacionEditado, religionEditado, descripcionEditado, otrosEditado]);
 
-  // Mostrar la lista de capítulos
+  // Mostrar la lista de personajes
   return (
     <div>
       <h2>{personajes.length > 0 ? 'Personajes:' : 'No hay personajes'}</h2>
@@ -462,7 +462,7 @@ function ListaPersonajes() {
               ) : (
                 <span onClick={() => cargarPersonaje(personaje.id)}>
                   <h3>{personaje.nombre}</h3>
-                  <p>{personaje.nombre.length > 50 ? `${personaje.nombre.slice(0, 50)}...` : personaje.nombre}</p>
+                  <p>{personaje.descripcion.length > 50 ? `${personaje.descripcion.slice(0, 50)}...` : personaje.descripcion}</p>
                   <p>
                     <span>Creado: {personaje.fechaCreacion}</span><br />
                     {personaje.fechaCreacion !== personaje.fechaModificacion && <span>Modificado: {personaje.fechaModificacion}</span>}
