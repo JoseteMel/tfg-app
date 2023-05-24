@@ -36,7 +36,6 @@ const TextField = () => {
   return (
       <form>
         <textarea value={nota} placeholder='Escribe tus notas aquí...' onChange={handleChange} onBlur={handleBlur} className='caja-notas'/> <br />
-        {/* <button type="submit">Guardar</button> */}
       </form>
   );
 };
