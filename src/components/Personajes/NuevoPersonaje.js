@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './NuevoPersonaje.css';
 
 // Componente para crear un personaje
 function NuevoPersonaje() {
@@ -201,101 +202,101 @@ function NuevoPersonaje() {
 
   // Renderizar el componente
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <label>
           Nombre:
-          <input type="text" value={nombre} onChange={handleNombreChange} autoFocus id="name-input" />
-          <span>{nombre.length}/50</span>
+          <input className="input-field" type="text" value={nombre} onChange={handleNombreChange} autoFocus id="name-input" />
+          <span className="character-count">{nombre.length}/50</span>
         </label>
         <br />
         <label>
           Apellidos:
-          <input type="text" value={apellidos} onChange={handleApellidosChange} />
-          <span>{apellidos.length}/50</span>
+          <input className="input-field" type="text" value={apellidos} onChange={handleApellidosChange} />
+          <span className="character-count">{apellidos.length}/50</span>
         </label>
         <br />
         <label>
           Fecha de nacimiento:
-          <input type="text" value={fechaNacimiento} onChange={handleFechaNacimientoChange} />
-          <span>{fechaNacimiento.length}/50</span>
+          <input className="input-field" type="text" value={fechaNacimiento} onChange={handleFechaNacimientoChange} />
+          <span className="character-count">{fechaNacimiento.length}/50</span>
         </label>
         <br />
         <label>
           Lugar de nacimiento:
-          <input type="text" value={lugarNacimiento} onChange={handleLugarNacimientoChange} />
-          <span>{lugarNacimiento.length}/50</span>
+          <input className="input-field" type="text" value={lugarNacimiento} onChange={handleLugarNacimientoChange} />
+          <span className="character-count">{lugarNacimiento.length}/50</span>
         </label>
         <br />
         <label>
           Altura:
-          <input type="text" value={altura} onChange={handleAlturaChange} />
-          <span>{altura.length}/10</span>
+          <input className="input-field" type="text" value={altura} onChange={handleAlturaChange} />
+          <span className="character-count">{altura.length}/10</span>
         </label>
         <br />
         <label>
           Complexión:
-          <input type="text" value={complexion} onChange={handleComplexionChange} />
-          <span>{complexion.length}/20</span>
+          <input className="input-field" type="text" value={complexion} onChange={handleComplexionChange} />
+          <span className="character-count">{complexion.length}/20</span>
         </label>
         <br />
         <label>
           Longitud de pelo:
-          <input type="text" value={longitudPelo} onChange={handleLongitudPeloChange} />
-          <span>{longitudPelo.length}/20</span>
+          <input className="input-field" type="text" value={longitudPelo} onChange={handleLongitudPeloChange} />
+          <span className="character-count">{longitudPelo.length}/20</span>
         </label>
         <br />
         <label>
           Color del pelo:
-          <input type="text" value={colorPelo} onChange={handleColorPeloChange} />
-          <span>{colorPelo.length}/20</span>
+          <input className="input-field" type="text" value={colorPelo} onChange={handleColorPeloChange} />
+          <span className="character-count">{colorPelo.length}/20</span>
         </label>
         <br />
         <label>
           Raza:
-          <input type="text" value={raza} onChange={handleRazaChange} />
-          <span>{raza.length}/50</span>
+          <input className="input-field" type="text" value={raza} onChange={handleRazaChange} />
+          <span className="character-count">{raza.length}/50</span>
         </label>
         <br />
         <label>
           Sexo:
-          <input type="text" value={sexo} onChange={handleSexoChange} />
-          <span>{sexo.length}/50</span>
+          <input className="input-field" type="text" value={sexo} onChange={handleSexoChange} />
+          <span className="character-count">{sexo.length}/50</span>
         </label>
         <br />
         <label>
           Personalidad:
-          <input type="text" value={personalidad} onChange={handlePersonalidadChange} />
-          <span>{personalidad.length}/100</span>
+          <input className="input-field" type="text" value={personalidad} onChange={handlePersonalidadChange} />
+          <span className="character-count">{personalidad.length}/100</span>
         </label>
         <br />
         <label>
           Ocupación:
-          <input type="text" value={ocupacion} onChange={handleOcupacionChange} />
-          <span>{ocupacion.length}/100</span>
+          <input className="input-field" type="text" value={ocupacion} onChange={handleOcupacionChange} />
+          <span className="character-count">{ocupacion.length}/100</span>
         </label>
         <br />
         <label>
           Religión:
-          <input type="text" value={religion} onChange={handleReligionChange} />
-          <span>{religion.length}/100</span>
+          <input className="input-field" type="text" value={religion} onChange={handleReligionChange} />
+          <span className="character-count">{religion.length}/100</span>
         </label>
         <br />
         <label>
           Descripción:
-          <textarea value={descripcion} onChange={handleDescripcionChange} onKeyDown={handleKeyDown} />
-          <span>{descripcion.length}</span>
+          <textarea className="input-field" value={descripcion} onChange={handleDescripcionChange} onKeyDown={handleKeyDown} />
+          <span className="character-count">{descripcion.length}</span>
         </label>
         <br />
         <label>
           Otros...:
-          <textarea value={otros} onChange={handleOtrosChange} onKeyDown={handleKeyDown} />
-          <span>{otros.length}</span>
+          <textarea className="input-field" value={otros} onChange={handleOtrosChange} onKeyDown={handleKeyDown} />
+          <span className="character-count">{otros.length}</span>
         </label>
         <br />
-        <button type="submit">Guardar</button>
+        <button className="submit-button" type="submit">Guardar</button>
       </form>
-      <p>{mensaje}</p>
+      <p className="message">{mensaje}</p>
     </div>
   );
 }

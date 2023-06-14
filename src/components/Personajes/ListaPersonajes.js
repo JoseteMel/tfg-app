@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './ListaPersonajes.css';
 
 function ListaPersonajes() {
   const [personajes, setPersonajes] = useState([]);
@@ -345,135 +346,214 @@ function ListaPersonajes() {
   // Mostrar la lista de personajes
   return (
     <div>
-      <h2>{personajes.length > 0 ? 'Personajes:' : 'No hay personajes'}</h2>
+      <div className='section-title'>
+        <h2>{personajes.length > 0 ? 'Personajes:' : 'No hay personajes'}</h2>
+      </div>
       <ul>
-        {Array.isArray(personajes) && personajes.map(personaje => (
-          <li key={personaje.id}>
-            <div>
-              {personajeEditadoId === personaje.id ? (
-                <form onSubmit={event => {
-                  event.preventDefault(); // Evitar recarga de página
-                  guardarPersonajeEditado();
-                }} onKeyDown={event => {
-                  if (event.ctrlKey && event.key === 'Enter') {
-                    event.preventDefault(); // Evitar salto de línea
-                    guardarPersonajeEditado();
-                  }
-                }}>
-                  <label>
-                    Nombre:
-                    <input type="text" value={nombreEditado} onChange={event => setNombreEditado(event.target.value)} autoFocus />
-                    <span>{nombreEditado.length}/50</span>
-                  </label>
-                  <br />
-                  <label>
-                    Apellidos:
-                    <input type="text" value={apellidosEditado} onChange={event => setApellidosEditado(event.target.value)} />
-                    <span>{apellidosEditado.length}/50</span>
-                  </label>
-                  <br />
-                  <label>
-                    Fecha de nacimiento:
-                    <input type="text" value={fechaNacimientoEditado} onChange={event => setFechaNacimientoEditado(event.target.value)} />
-                    <span>{fechaNacimientoEditado.length}/50</span>
-                  </label>
-                  <br />
-                  <label>
-                    Lugar de nacimiento:
-                    <input type="text" value={lugarNacimientoEditado} onChange={event => setLugarNacimientoEditado(event.target.value)} />
-                    <span>{lugarNacimientoEditado.length}/50</span>
-                  </label>
-                  <br />
-                  <label>
-                    Altura:
-                    <input type="text" value={alturaEditado} onChange={event => setAlturaEditado(event.target.value)} />
-                    <span>{alturaEditado.length}/10</span>
-                  </label>
-                  <br />
-                  <label>
-                    Complexión:
-                    <input type="text" value={complexionEditado} onChange={event => setComplexionEditado(event.target.value)} />
-                    <span>{complexionEditado.length}/20</span>
-                  </label>
-                  <br />
-                  <label>
-                    Longitud de pelo:
-                    <input type="text" value={longitudPeloEditado} onChange={event => setLongitudPeloEditado(event.target.value)} />
-                    <span>{longitudPeloEditado.length}/20</span>
-                  </label>
-                  <br />
-                  <label>
-                    Color del pelo:
-                    <input type="text" value={colorPeloEditado} onChange={event => setColorPeloEditado(event.target.value)} />
-                    <span>{colorPeloEditado.length}/20</span>
-                  </label>
-                  <br />
-                  <label>
-                    Raza:
-                    <input type="text" value={razaEditado} onChange={event => setRazaEditado(event.target.value)} />
-                    <span>{razaEditado.length}/50</span>
-                  </label>
-                  <br />
-                  <label>
-                    Sexo:
-                    <input type="text" value={sexoEditado} onChange={event => setSexoEditado(event.target.value)} />
-                    <span>{sexoEditado.length}/50</span>
-                  </label>
-                  <br />
-                  <label>
-                    Personalidad:
-                    <input type="text" value={personalidadEditado} onChange={event => setPersonalidadEditado(event.target.value)} />
-                    <span>{personalidadEditado.length}/100</span>
-                  </label>
-                  <br />
-                  <label>
-                    Ocupación:
-                    <input type="text" value={ocupacionEditado} onChange={event => setOcupacionEditado(event.target.value)} />
-                    <span>{ocupacionEditado.length}/100</span>
-                  </label>
-                  <br />
-                  <label>
-                    Religión:
-                    <input type="text" value={religionEditado} onChange={event => setReligionEditado(event.target.value)} />
-                    <span>{religionEditado.length}/100</span>
-                  </label>
-                  <br />
-                  <label>
-                    Descripción:
-                    <textarea value={descripcionEditado} onChange={event => setDescripcionEditado(event.target.value)} />
-                    <span>{descripcionEditado.length}</span>
-                  </label>
-                  <br />
-                  <label>
-                    Otros...:
-                    <textarea value={otrosEditado} onChange={event => setOtrosEditado(event.target.value)} />
-                    <span>{otrosEditado.length}</span>
-                  </label>
-                  <br />
-                  <p>
-                    <span>Creado: {personaje.fechaCreacion}</span><br />
-                    {personaje.fechaCreacion !== personaje.fechaModificacion && <span>Modificado: {personaje.fechaModificacion}</span>}
-                  </p>
-                  <p>{mensaje}</p>
-                  <button type="submit">Guardar cambios</button>
-                  <button onClick={cancelarEdicion}>Cancelar</button>
-                  <button onClick={() => eliminarPersonaje(personaje.id)}>Eliminar</button>
-                </form>
-              ) : (
-                <span onClick={() => cargarPersonaje(personaje.id)}>
-                  <h3>{personaje.nombre}</h3>
-                  <p>{personaje.descripcion.length > 50 ? `${personaje.descripcion.slice(0, 50)}...` : personaje.descripcion}</p>
-                  <p>
-                    <span>Creado: {personaje.fechaCreacion}</span><br />
-                    {personaje.fechaCreacion !== personaje.fechaModificacion && <span>Modificado: {personaje.fechaModificacion}</span>}
-                  </p>
-                </span>
-              )}
-            </div>
-          </li>
-        ))}
+        {Array.isArray(personajes) &&
+          personajes.map((personaje) => (
+            <li key={personaje.id}>
+              <div>
+                {personajeEditadoId === personaje.id ? (
+                  <form
+                    className="personaje-form"
+                    onSubmit={(event) => {
+                      event.preventDefault(); // Evitar recarga de página
+                      guardarPersonajeEditado();
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.ctrlKey && event.key === 'Enter') {
+                        event.preventDefault(); // Evitar salto de línea
+                        guardarPersonajeEditado();
+                      }
+                    }}
+                  >
+                    <label>
+                      Nombre:
+                      <input
+                        type="text"
+                        value={nombreEditado}
+                        onChange={(event) => setNombreEditado(event.target.value)}
+                        autoFocus
+                      />
+                      <span>{nombreEditado.length}/50</span>
+                    </label>
+                    <br />
+                    <label>
+                      Apellidos:
+                      <input
+                        type="text"
+                        value={apellidosEditado}
+                        onChange={(event) => setApellidosEditado(event.target.value)}
+                      />
+                      <span>{apellidosEditado.length}/50</span>
+                    </label>
+                    <br />
+                    <label>
+                      Fecha de nacimiento:
+                      <input
+                        type="text"
+                        value={fechaNacimientoEditado}
+                        onChange={(event) => setFechaNacimientoEditado(event.target.value)}
+                      />
+                      <span>{fechaNacimientoEditado.length}/50</span>
+                    </label>
+                    <br />
+                    <label>
+                      Lugar de nacimiento:
+                      <input
+                        type="text"
+                        value={lugarNacimientoEditado}
+                        onChange={(event) => setLugarNacimientoEditado(event.target.value)}
+                      />
+                      <span>{lugarNacimientoEditado.length}/50</span>
+                    </label>
+                    <br />
+                    <label>
+                      Altura:
+                      <input
+                        type="text"
+                        value={alturaEditado}
+                        onChange={(event) => setAlturaEditado(event.target.value)}
+                      />
+                      <span>{alturaEditado.length}/10</span>
+                    </label>
+                    <br />
+                    <label>
+                      Complexión:
+                      <input
+                        type="text"
+                        value={complexionEditado}
+                        onChange={(event) => setComplexionEditado(event.target.value)}
+                      />
+                      <span>{complexionEditado.length}/20</span>
+                    </label>
+                    <br />
+                    <label>
+                      Longitud de pelo:
+                      <input
+                        type="text"
+                        value={longitudPeloEditado}
+                        onChange={(event) => setLongitudPeloEditado(event.target.value)}
+                      />
+                      <span>{longitudPeloEditado.length}/20</span>
+                    </label>
+                    <br />
+                    <label>
+                      Color del pelo:
+                      <input
+                        type="text"
+                        value={colorPeloEditado}
+                        onChange={(event) => setColorPeloEditado(event.target.value)}
+                      />
+                      <span>{colorPeloEditado.length}/20</span>
+                    </label>
+                    <br />
+                    <label>
+                      Raza:
+                      <input
+                        type="text"
+                        value={razaEditado}
+                        onChange={(event) => setRazaEditado(event.target.value)}
+                      />
+                      <span>{razaEditado.length}/50</span>
+                    </label>
+                    <br />
+                    <label>
+                      Sexo:
+                      <input
+                        type="text"
+                        value={sexoEditado}
+                        onChange={(event) => setSexoEditado(event.target.value)}
+                      />
+                      <span>{sexoEditado.length}/50</span>
+                    </label>
+                    <br />
+                    <label>
+                      Personalidad:
+                      <input
+                        type="text"
+                        value={personalidadEditado}
+                        onChange={(event) => setPersonalidadEditado(event.target.value)}
+                      />
+                      <span>{personalidadEditado.length}/100</span>
+                    </label>
+                    <br />
+                    <label>
+                      Ocupación:
+                      <input
+                        type="text"
+                        value={ocupacionEditado}
+                        onChange={(event) => setOcupacionEditado(event.target.value)}
+                      />
+                      <span>{ocupacionEditado.length}/100</span>
+                    </label>
+                    <br />
+                    <label>
+                      Religión:
+                      <input
+                        type="text"
+                        value={religionEditado}
+                        onChange={(event) => setReligionEditado(event.target.value)}
+                      />
+                      <span>{religionEditado.length}/100</span>
+                    </label>
+                    <br />
+                    <label>
+                      Descripción:
+                      <textarea
+                        value={descripcionEditado}
+                        onChange={(event) => setDescripcionEditado(event.target.value)}
+                      />
+                      <span>{descripcionEditado.length}</span>
+                    </label>
+                    <br />
+                    <label>
+                      Otros...:
+                      <textarea
+                        value={otrosEditado}
+                        onChange={(event) => setOtrosEditado(event.target.value)}
+                      />
+                      <span>{otrosEditado.length}</span>
+                    </label>
+                    <br />
+                    <p>
+                      <span>Creado: {personaje.fechaCreacion}</span>
+                      <br />
+                      {personaje.fechaCreacion !== personaje.fechaModificacion && (
+                        <span>Modificado: {personaje.fechaModificacion}</span>
+                      )}
+                    </p>
+                    <p>{mensaje}</p>
+                    <div>
+                      <button type="submit">Guardar cambios</button>
+                      <button onClick={cancelarEdicion}>Cancelar</button>
+                      <button onClick={() => eliminarPersonaje(personaje.id)}>Eliminar</button>
+                    </div>
+                  </form>
+                ) : (
+                  <span onClick={() => cargarPersonaje(personaje.id)}>
+                    <h3>{personaje.nombre}</h3>
+                    <p>
+                      {personaje.descripcion.length > 50
+                        ? `${personaje.descripcion.slice(0, 50)}...`
+                        : personaje.descripcion}
+                    </p>
+                    <p>
+                      <span>Creado: {personaje.fechaCreacion}</span>
+                      <br />
+                      {personaje.fechaCreacion !== personaje.fechaModificacion && (
+                        <span>Modificado: {personaje.fechaModificacion}</span>
+                      )}
+                    </p>
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
+
   ); 
 }
 

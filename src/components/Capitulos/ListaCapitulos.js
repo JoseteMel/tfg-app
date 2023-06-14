@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './ListaCapitulos.css';
 
 function ListaCapitulos() {
   const [capitulos, setCapitulos] = useState([]);
@@ -150,51 +151,85 @@ function ListaCapitulos() {
   // Mostrar la lista de capítulos
   return (
     <div>
-      <h2>{capitulos.length > 0 ? 'Capítulos:' : 'No hay capítulos'}</h2>
+      <div className='section-title'>
+        <h2>{capitulos.length > 0 ? 'Capítulos:' : 'No hay capítulos'}</h2>
+      </div>
       <ul>
-        {Array.isArray(capitulos) && capitulos.map(capitulo => (
-          <li key={capitulo.id}>
-            <div>
-              {capituloEditadoId === capitulo.id ? (
-                <form onSubmit={event => {
-                  event.preventDefault(); // Evitar recarga de página
-                  guardarCapituloEditado();
-                }} onKeyDown={event => {
-                  if (event.ctrlKey && event.key === 'Enter') {
-                    event.preventDefault(); // Evitar salto de línea
-                    guardarCapituloEditado();
-                  }
-                }}>
-                  <input type="text" value={tituloEditado} onChange={event => setTituloEditado(event.target.value)} autoFocus /><span>{tituloEditado.length}/50</span> <br />
-                  <textarea value={textoEditado} onChange={event => setTextoEditado(event.target.value)} /><span>{textoEditado.length}</span>  <br />
-                  <p>
-                    <span>Creado: {capitulo.fechaCreacion}</span><br />
-                    {capitulo.fechaCreacion !== capitulo.fechaModificacion && <span>Modificado: {capitulo.fechaModificacion}</span>}
-                  </p>
-                  <p>{mensaje}</p>
-                  <button type="submit">Guardar cambios</button>
-                  <button onClick={cancelarEdicion}>Cancelar</button>
-                  <button onClick={() => eliminarCapitulo(capitulo.id)}>Eliminar</button>
-                </form>
-              ) : (
-                <span onClick={() => cargarTexto(capitulo.id)}>
-                  {capitulo.titulo ? (
-                    <h3>{capitulo.titulo}</h3>
-                  ) : (
-                    <h3><i>(Sin título)</i></h3>
-                  )}
-                  <p>{capitulo.texto.length > 50 ? `${capitulo.texto.slice(0, 50)}...` : capitulo.texto}</p>
-                  <p>
-                    <span>Creado: {capitulo.fechaCreacion}</span><br />
-                    {capitulo.fechaCreacion !== capitulo.fechaModificacion && <span>Modificado: {capitulo.fechaModificacion}</span>}
-                  </p>
-                </span>
-              )}
-            </div>
-          </li>
-        ))}
+        {Array.isArray(capitulos) &&
+          capitulos.map((capitulo) => (
+            <li key={capitulo.id}>
+              <div>
+                {capituloEditadoId === capitulo.id ? (
+                  <form
+                    className="edit-form"
+                    onSubmit={(event) => {
+                      event.preventDefault(); // Evitar recarga de página
+                      guardarCapituloEditado();
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.ctrlKey && event.key === 'Enter') {
+                        event.preventDefault(); // Evitar salto de línea
+                        guardarCapituloEditado();
+                      }
+                    }}
+                  >
+                    <input
+                      type="text"
+                      value={tituloEditado}
+                      onChange={(event) => setTituloEditado(event.target.value)}
+                      autoFocus
+                    />
+                    <span>{tituloEditado.length}/50</span> <br />
+                    <textarea
+                      value={textoEditado}
+                      onChange={(event) => setTextoEditado(event.target.value)}
+                    />
+                    <span>{textoEditado.length}</span> <br />
+                    <p>
+                      <span>Creado: {capitulo.fechaCreacion}</span>
+                      <br />
+                      {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
+                        <span>Modificado: {capitulo.fechaModificacion}</span>
+                      )}
+                    </p>
+                    <p>{mensaje}</p>
+                    <div>
+                      <button type="submit">Guardar cambios</button>
+                      <button onClick={cancelarEdicion}>Cancelar</button>
+                      <button onClick={() => eliminarCapitulo(capitulo.id)}>
+                        Eliminar
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <span onClick={() => cargarTexto(capitulo.id)}>
+                    {capitulo.titulo ? (
+                      <h3>{capitulo.titulo}</h3>
+                    ) : (
+                      <h3>
+                        <i>(Sin título)</i>
+                      </h3>
+                    )}
+                    <p>
+                      {capitulo.texto.length > 50
+                        ? `${capitulo.texto.slice(0, 50)}...`
+                        : capitulo.texto}
+                    </p>
+                    <p>
+                      <span>Creado: {capitulo.fechaCreacion}</span>
+                      <br />
+                      {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
+                        <span>Modificado: {capitulo.fechaModificacion}</span>
+                      )}
+                    </p>
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
+
   ); 
   
 }

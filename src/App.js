@@ -10,9 +10,9 @@ import './App.css';
 const PantallaInicio = ({ cambiarPantallaCapitulo, cambiarPantallaPersonaje }) => {
   return (
     <div className='inicio-container'>
-      <h1>Inicio</h1>
-      <button onClick={cambiarPantallaCapitulo}>Crear un nuevo capítulo</button>
-      <button onClick={cambiarPantallaPersonaje}>Crear un nuevo personaje</button>
+      <h1>StoryCraft</h1>
+      <button onClick={cambiarPantallaCapitulo}>Crear un capítulo</button>
+      <button onClick={cambiarPantallaPersonaje}>Crear un personaje</button>
       <div className="column-container">
         <div className="lista-capitulos"><ListaCapitulos /></div>
         <div className="lista-personajes"><ListaPersonajes /></div>

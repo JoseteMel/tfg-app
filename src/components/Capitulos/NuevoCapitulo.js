@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './NuevoCapitulo.css';
 
 // Componente para crear un capítulo
 function NuevoCapitulo() {
@@ -63,24 +64,25 @@ function NuevoCapitulo() {
 
   // Renderizar el componente
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Título:
-          <input type="text" value={titulo} onChange={handleTitleChange} autoFocus id="title-input" />
-          <span>{titulo.length}/50</span>
-        </label>
-        <br />
-        <label>
-          Texto:
-          <textarea value={texto} onChange={handleTextChange} onKeyDown={handleKeyDown} />
-          <span>{texto.length}</span>
-        </label>
-        <br />
-        <button type="submit">Guardar</button>
-      </form>
-      <p>{mensaje}</p>
-    </div>
+<div className="container">
+  <form onSubmit={handleSubmit}>
+    <label>
+      Título:
+      <input className="input-field" type="text" value={titulo} onChange={handleTitleChange} autoFocus id="title-input" />
+      <span className="character-count">{titulo.length}/50</span>
+    </label>
+    <br />
+    <label>
+      Texto:
+      <textarea className="textarea-field" value={texto} onChange={handleTextChange} onKeyDown={handleKeyDown} />
+      <span className="character-count">{texto.length}</span>
+    </label>
+    <br />
+    <button className="submit-button" type="submit">Guardar</button>
+  </form>
+  <p className="message">{mensaje}</p>
+</div>
+
   );
 }
 
