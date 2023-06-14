@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import moment from 'moment'; // Importar moment
+
 import './ListaCapitulos.css';
 
 function ListaCapitulos() {
@@ -28,6 +30,11 @@ function ListaCapitulos() {
   useEffect(() => {
     obtenerCapitulos();
   }, []);
+
+  // Función para formatear la fecha
+  function formatearFecha(fecha) {
+    return moment(fecha).format('HH:mm DD/MM/YYYY'); // Aplicar el formato deseado
+  }
 
   // Cargar el capítulo seleccionado para editarlo
   function cargarTexto(capituloId) {
@@ -216,10 +223,10 @@ function ListaCapitulos() {
                         : capitulo.texto}
                     </p>
                     <p>
-                      <span>Creado: {capitulo.fechaCreacion}</span>
+                      <span>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
                       <br />
                       {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span>Modificado: {capitulo.fechaModificacion}</span>
+                        <span>Modificado: {formatearFecha(capitulo.fechaModificacion)}</span>
                       )}
                     </p>
                   </span>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import moment from 'moment'; // Importar moment
+
 import './ListaPersonajes.css';
 
 function ListaPersonajes() {
@@ -54,6 +56,11 @@ function ListaPersonajes() {
   useEffect(() => {
     obtenerPersonajes();
   }, []);
+
+  // Función para formatear la fecha
+  function formatearFecha(fecha) {
+    return moment(fecha).format('HH:mm DD/MM/YYYY'); // Aplicar el formato deseado
+  }
 
   // Cargar el personaje seleccionado para editarlo
   function cargarPersonaje(personajeId) {
@@ -540,10 +547,10 @@ function ListaPersonajes() {
                         : personaje.descripcion}
                     </p>
                     <p>
-                      <span>Creado: {personaje.fechaCreacion}</span>
+                      <span>Creado: {formatearFecha(personaje.fechaCreacion)}</span>
                       <br />
                       {personaje.fechaCreacion !== personaje.fechaModificacion && (
-                        <span>Modificado: {personaje.fechaModificacion}</span>
+                        <span>Modificado: {formatearFecha(personaje.fechaModificacion)}</span>
                       )}
                     </p>
                   </span>
