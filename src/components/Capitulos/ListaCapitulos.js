@@ -70,8 +70,8 @@ function ListaCapitulos() {
   function guardarCapituloEditado() {
 
     // Validar el título y el texto
-    if (tituloEditado.length > 50) {
-      setMensaje("El título no puede tener más de 50 caracteres");
+    if (tituloEditado.length > 100) {
+      setMensaje("El título no puede tener más de 100 caracteres");
       return;
     }
 
@@ -187,7 +187,7 @@ function ListaCapitulos() {
                       onChange={(event) => setTituloEditado(event.target.value)}
                       autoFocus
                     />
-                    <span>{tituloEditado.length}/50</span> <br />
+                    <span>{tituloEditado.length}/100</span> <br />
                     Texto:
                     <textarea
                       value={textoEditado}
@@ -220,8 +220,8 @@ function ListaCapitulos() {
                       </h3>
                     )}
                     <p>
-                      {capitulo.texto.length > 50
-                        ? `${capitulo.texto.slice(0, 50)}...`
+                      {capitulo.texto.length > 250
+                        ? `${capitulo.texto.slice(0, 250)}...`
                         : capitulo.texto}
                     </p>
                     <p>

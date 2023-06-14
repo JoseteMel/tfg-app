@@ -173,8 +173,8 @@ function ListaPersonajes() {
         return;
       }
   
-      if (alturaEditado.length > 20) {
-        setMensaje("La altura no debe tener más de 20 caracteres.");
+      if (alturaEditado.length > 30) {
+        setMensaje("La altura no debe tener más de 30 caracteres.");
         return;
       }
   
@@ -423,7 +423,7 @@ function ListaPersonajes() {
                         value={alturaEditado}
                         onChange={(event) => setAlturaEditado(event.target.value)}
                       />
-                      <span>{alturaEditado.length}/10</span>
+                      <span>{alturaEditado.length}/30</span>
                     </label>
                     <br />
                     <label>
@@ -542,8 +542,8 @@ function ListaPersonajes() {
                   <span onClick={() => cargarPersonaje(personaje.id)}>
                     <h3>{personaje.nombre} {personaje.apellidos}</h3>
                     <p>
-                      {personaje.descripcion.length > 50
-                        ? `${personaje.descripcion.slice(0, 50)}...`
+                      {personaje.descripcion.length > 200
+                        ? `${personaje.descripcion.slice(0, 200)}...`
                         : personaje.descripcion}
                     </p>
                     <p>
