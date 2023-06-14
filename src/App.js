@@ -51,7 +51,7 @@ const PantallaNuevoCapitulo = ({ goBack }) => {
       <TituloApp />
       <h2 className='section-titles'>Crear nuevo capítulo</h2>
       <NuevoCapitulo />
-      <button onClick={handleGoBack}>Volver</button>
+      <button className='volver-btn' onClick={handleGoBack}>Volver</button>
     </div>
   );
 };
@@ -84,7 +84,7 @@ const PantallaNuevoPersonaje = ({ goBack }) => {
       <TituloApp />
       <h2 className='section-titles'>Crear nuevo personaje</h2>
       <NuevoPersonaje />
-      <button onClick={handleGoBack}>Volver</button>
+      <button className='volver-btn' onClick={handleGoBack}>Volver</button>
     </div>
   );
 };

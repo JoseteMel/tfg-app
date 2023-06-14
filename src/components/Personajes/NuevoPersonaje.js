@@ -110,8 +110,8 @@ function NuevoPersonaje() {
       return;
     }
 
-    if (altura.length > 20) {
-      setMensaje("La altura no debe tener más de 20 caracteres.");
+    if (altura.length > 30) {
+      setMensaje("La altura no debe tener más de 30 caracteres.");
       return;
     }
 
@@ -232,7 +232,7 @@ function NuevoPersonaje() {
         <label>
           Altura:
           <input className="input-field" type="text" value={altura} onChange={handleAlturaChange} />
-          <span className="character-count">{altura.length}/10</span>
+          <span className="character-count">{altura.length}/30</span>
         </label>
         <br />
         <label>
@@ -285,13 +285,13 @@ function NuevoPersonaje() {
         <br />
         <label>
           Descripción:
-          <textarea className="input-field" value={descripcion} onChange={handleDescripcionChange} onKeyDown={handleKeyDown} />
+          <textarea className="input-field textarea-field" value={descripcion} onChange={handleDescripcionChange} onKeyDown={handleKeyDown} />
           <span className="character-count">{descripcion.length}</span>
         </label>
         <br />
         <label>
           Otros...:
-          <textarea className="input-field" value={otros} onChange={handleOtrosChange} onKeyDown={handleKeyDown} />
+          <textarea className="input-field textarea-field" value={otros} onChange={handleOtrosChange} onKeyDown={handleKeyDown} />
           <span className="character-count">{otros.length}</span>
         </label>
         <br />

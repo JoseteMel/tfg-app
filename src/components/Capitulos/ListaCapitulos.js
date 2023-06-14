@@ -70,8 +70,8 @@ function ListaCapitulos() {
   function guardarCapituloEditado() {
 
     // Validar el título y el texto
-    if (tituloEditado.length > 50) {
-      setMensaje("El título no puede tener más de 50 caracteres");
+    if (tituloEditado.length > 100) {
+      setMensaje("El título no puede tener más de 100 caracteres");
       return;
     }
 
@@ -180,13 +180,15 @@ function ListaCapitulos() {
                       }
                     }}
                   >
+                    Título:
                     <input
                       type="text"
                       value={tituloEditado}
                       onChange={(event) => setTituloEditado(event.target.value)}
                       autoFocus
                     />
-                    <span>{tituloEditado.length}/50</span> <br />
+                    <span>{tituloEditado.length}/100</span> <br />
+                    Texto:
                     <textarea
                       value={textoEditado}
                       onChange={(event) => setTextoEditado(event.target.value)}
@@ -196,7 +198,7 @@ function ListaCapitulos() {
                       <span>Creado: {capitulo.fechaCreacion}</span>
                       <br />
                       {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span>Modificado: {capitulo.fechaModificacion}</span>
+                        <span>Última modificación: {capitulo.fechaModificacion}</span>
                       )}
                     </p>
                     <p className='message'><strong>{mensaje}</strong></p>
@@ -218,15 +220,15 @@ function ListaCapitulos() {
                       </h3>
                     )}
                     <p>
-                      {capitulo.texto.length > 50
-                        ? `${capitulo.texto.slice(0, 50)}...`
+                      {capitulo.texto.length > 250
+                        ? `${capitulo.texto.slice(0, 250)}...`
                         : capitulo.texto}
                     </p>
                     <p>
-                      <span>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
+                      <span className='date-info'>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
                       <br />
                       {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span>Modificado: {formatearFecha(capitulo.fechaModificacion)}</span>
+                        <span className='date-info'>Última modificación: {formatearFecha(capitulo.fechaModificacion)}</span>
                       )}
                     </p>
                   </span>
@@ -236,9 +238,7 @@ function ListaCapitulos() {
           ))}
       </ul>
     </div>
-
   ); 
-  
 }
 
 export default ListaCapitulos;

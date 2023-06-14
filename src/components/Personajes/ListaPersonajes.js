@@ -173,8 +173,8 @@ function ListaPersonajes() {
         return;
       }
   
-      if (alturaEditado.length > 20) {
-        setMensaje("La altura no debe tener más de 20 caracteres.");
+      if (alturaEditado.length > 30) {
+        setMensaje("La altura no debe tener más de 30 caracteres.");
         return;
       }
   
@@ -423,7 +423,7 @@ function ListaPersonajes() {
                         value={alturaEditado}
                         onChange={(event) => setAlturaEditado(event.target.value)}
                       />
-                      <span>{alturaEditado.length}/10</span>
+                      <span>{alturaEditado.length}/30</span>
                     </label>
                     <br />
                     <label>
@@ -528,7 +528,7 @@ function ListaPersonajes() {
                       <span>Creado: {personaje.fechaCreacion}</span>
                       <br />
                       {personaje.fechaCreacion !== personaje.fechaModificacion && (
-                        <span>Modificado: {personaje.fechaModificacion}</span>
+                        <span>Última modificación: {personaje.fechaModificacion}</span>
                       )}
                     </p>
                     <p className='message'><strong>{mensaje}</strong></p>
@@ -540,17 +540,17 @@ function ListaPersonajes() {
                   </form>
                 ) : (
                   <span onClick={() => cargarPersonaje(personaje.id)}>
-                    <h3>{personaje.nombre}</h3>
+                    <h3>{personaje.nombre} {personaje.apellidos}</h3>
                     <p>
-                      {personaje.descripcion.length > 50
-                        ? `${personaje.descripcion.slice(0, 50)}...`
+                      {personaje.descripcion.length > 200
+                        ? `${personaje.descripcion.slice(0, 200)}...`
                         : personaje.descripcion}
                     </p>
                     <p>
-                      <span>Creado: {formatearFecha(personaje.fechaCreacion)}</span>
+                      <span className='date-info'>Creado: {formatearFecha(personaje.fechaCreacion)}</span>
                       <br />
                       {personaje.fechaCreacion !== personaje.fechaModificacion && (
-                        <span>Modificado: {formatearFecha(personaje.fechaModificacion)}</span>
+                        <span className='date-info'>Última modificación: {formatearFecha(personaje.fechaModificacion)}</span>
                       )}
                     </p>
                   </span>
@@ -560,7 +560,6 @@ function ListaPersonajes() {
           ))}
       </ul>
     </div>
-
   ); 
 }
 

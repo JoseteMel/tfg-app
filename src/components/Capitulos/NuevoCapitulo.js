@@ -19,8 +19,8 @@ function NuevoCapitulo() {
     event.preventDefault();
 
     // Validar el título y el texto
-    if (titulo.length > 50) {
-      setMensaje("El título no debe tener más de 50 caracteres.");
+    if (titulo.length > 100) {
+      setMensaje("El título no debe tener más de 100 caracteres.");
       return;
     }
 
@@ -39,7 +39,7 @@ function NuevoCapitulo() {
     })
       .then((response) => {
         if (response.ok) {
-          setMensaje("¡Texto enviado con éxito!");
+          setMensaje("¡Texto guardado!");
           setTitulo("");
           setTexto("");
           // Colocar el cursor en el campo de título
@@ -69,7 +69,7 @@ function NuevoCapitulo() {
     <label>
       Título:
       <input className="input-field" type="text" value={titulo} onChange={handleTitleChange} autoFocus id="title-input" />
-      <span className="character-count">{titulo.length}/50</span>
+      <span className="character-count">{titulo.length}/100</span>
     </label>
     <br />
     <label>

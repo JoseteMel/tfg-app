@@ -1,51 +1,81 @@
 /* Estilos de los campos de edición */
 .edit-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .edit-form input[type="text"],
-  .edit-form textarea {
-    margin-bottom: 10px;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  .edit-form span {
-    font-size: 14px;
-    color: #888;
-  }
-  
-  .edit-form p {
-    margin-bottom: 10px;
-  }
-  
-  .edit-form button[type="submit"],
-  .edit-form button {
-    display: inline-block;
-    width: 150px;
-    margin-right: 10px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #537394;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-form button:last-child {
-    margin-right: 0;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  .section-title {
-    background-color: #c8c8c8;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
+.edit-form input[type="text"],
+.edit-form textarea {
+  margin-bottom: 5px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #ebf3ff;
+}
+
+.edit-form textarea {
+  height: 250px;
+}
+
+.edit-form span {
+  font-size: 14px;
+  color: rgb(98, 98, 98);
+}
+
+.edit-form p {
+  margin-bottom: 10px;
+}
+
+.edit-form button[type="submit"],
+.edit-form button {
+  display: inline-block;
+  width: 150px;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #537394;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-form button:last-child {
+  margin-right: 0;
+}
+
+.section-title {
+  background-color: #94a7c0;
+  padding: 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-top: 10px;
+  color: #d63838;
+}
+
+.date-info {
+  font-size: 14px; /* Tamaño de fuente deseado */
+  color: rgb(98, 98, 98);
+}
   
-  .message {
-    margin-top: 10px;
-    color: red;
-  }
+
+/* Separador entre capítulos */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  border-bottom: 3px solid #94a7c0; /* Línea divisoria entre capítulos */
+  padding-bottom: 10px;
+}
+
+li:last-child {
+  border-bottom: none; /* Quitar la línea divisoria del último capítulo */
+}
