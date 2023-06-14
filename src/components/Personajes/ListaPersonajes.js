@@ -540,7 +540,7 @@ function ListaPersonajes() {
                   </form>
                 ) : (
                   <span onClick={() => cargarPersonaje(personaje.id)}>
-                    <h3>{personaje.nombre}</h3>
+                    <h3>{personaje.nombre} {personaje.apellidos}</h3>
                     <p>
                       {personaje.descripcion.length > 50
                         ? `${personaje.descripcion.slice(0, 50)}...`
