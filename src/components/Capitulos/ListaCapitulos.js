@@ -225,12 +225,12 @@ function ListaCapitulos() {
                         : capitulo.texto}
                     </p>
                     <p>
-                    <span className='date-info'>
-                      {capitulo.fechaCreacion !== capitulo.fechaModificacion
-                        ? `Última modificación: ${formatearFecha(capitulo.fechaModificacion)}`
-                        : `Creado: ${formatearFecha(capitulo.fechaCreacion)}`}
-                    </span>
-                  </p>
+                      <span className='date-info'>
+                        {capitulo.fechaCreacion !== capitulo.fechaModificacion
+                          ? `Última modificación: ${formatearFecha(capitulo.fechaModificacion)}`
+                          : `Creado: ${formatearFecha(capitulo.fechaCreacion)}`}
+                      </span>
+                    </p>
                   </span>
                 )}
               </div>
