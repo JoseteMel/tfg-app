@@ -199,7 +199,7 @@ function ListaCapitulos() {
                         <span>Modificado: {capitulo.fechaModificacion}</span>
                       )}
                     </p>
-                    <p>{mensaje}</p>
+                    <p className='message'><strong>{mensaje}</strong></p>
                     <div>
                       <button type="submit">Guardar cambios</button>
                       <button onClick={cancelarEdicion}>Cancelar</button>

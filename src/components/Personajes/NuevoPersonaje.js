@@ -297,7 +297,7 @@ function NuevoPersonaje() {
         <br />
         <button className="submit-button" type="submit">Guardar</button>
       </form>
-      <p className="message">{mensaje}</p>
+      <p className="message"><strong>{mensaje}</strong></p>
     </div>
   );
 }
