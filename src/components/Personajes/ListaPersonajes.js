@@ -528,7 +528,7 @@ function ListaPersonajes() {
                       <span>Creado: {personaje.fechaCreacion}</span>
                       <br />
                       {personaje.fechaCreacion !== personaje.fechaModificacion && (
-                        <span>Modificado: {personaje.fechaModificacion}</span>
+                        <span>Última modificación: {personaje.fechaModificacion}</span>
                       )}
                     </p>
                     <p className='message'><strong>{mensaje}</strong></p>
@@ -547,10 +547,10 @@ function ListaPersonajes() {
                         : personaje.descripcion}
                     </p>
                     <p>
-                      <span>Creado: {formatearFecha(personaje.fechaCreacion)}</span>
+                      <span className='date-info'>Creado: {formatearFecha(personaje.fechaCreacion)}</span>
                       <br />
                       {personaje.fechaCreacion !== personaje.fechaModificacion && (
-                        <span>Modificado: {formatearFecha(personaje.fechaModificacion)}</span>
+                        <span className='date-info'>Última modificación: {formatearFecha(personaje.fechaModificacion)}</span>
                       )}
                     </p>
                   </span>
@@ -560,7 +560,6 @@ function ListaPersonajes() {
           ))}
       </ul>
     </div>
-
   ); 
 }
 

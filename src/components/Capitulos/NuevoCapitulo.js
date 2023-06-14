@@ -39,7 +39,7 @@ function NuevoCapitulo() {
     })
       .then((response) => {
         if (response.ok) {
-          setMensaje("¡Texto enviado con éxito!");
+          setMensaje("¡Texto guardado!");
           setTitulo("");
           setTexto("");
           // Colocar el cursor en el campo de título

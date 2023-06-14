@@ -1,49 +1,76 @@
 .personaje-form label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  .personaje-form input,
-  .personaje-form textarea {
-    margin-top: 5px;
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .personaje-form span {
-    font-size: 12px;
-    color: #888;
-  }
-  
-  .personaje-form button[type="submit"],
-  .personaje-form button {
-    display: inline-block;
-    width: 150px;
-    margin-right: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #537394;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .personaje-form button:last-child {
-    margin-right: 0;
-  }
-  
-  .section-title {
-    background-color: #c8c8c8;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .message {
-    margin-top: 10px;
-    color: red;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.personaje-form input,
+.personaje-form textarea {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #ebf3ff;
+}
+
+.personaje-form textarea {
+  height: 80px;
+}
+
+.personaje-form span {
+  font-size: 14px;
+  color: rgb(98, 98, 98);
+}
+
+.personaje-form button[type="submit"],
+.personaje-form button {
+  display: inline-block;
+  width: 150px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #537394;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.personaje-form button:last-child {
+  margin-right: 0;
+}
+
+.section-title {
+  background-color: #94a7c0;
+  padding: 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-top: 10px;
+  color: #d63838;
+}
+
+.date-info {
+  font-size: 14px; /* Tamaño de fuente deseado */
+  color: rgb(98, 98, 98);
+}
+
+/* Separador entre capítulos */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  border-bottom: 3px solid #94a7c0; /* Línea divisoria entre capítulos */
+  padding-bottom: 10px;
+}
+
+li:last-child {
+  border-bottom: none; /* Quitar la línea divisoria del último capítulo */
+}

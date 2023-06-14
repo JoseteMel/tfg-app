@@ -12,6 +12,11 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 10px;
+    background-color: #ebf3ff;
+  }
+
+  .textarea-field {
+    height: 250px;
   }
   
   .character-count {
@@ -37,6 +42,5 @@
   
   .message {
     margin-top: 10px;
-    color: red;
+    color: #d63838;
   }
-  

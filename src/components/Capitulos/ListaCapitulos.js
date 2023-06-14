@@ -180,6 +180,7 @@ function ListaCapitulos() {
                       }
                     }}
                   >
+                    Título:
                     <input
                       type="text"
                       value={tituloEditado}
@@ -187,6 +188,7 @@ function ListaCapitulos() {
                       autoFocus
                     />
                     <span>{tituloEditado.length}/50</span> <br />
+                    Texto:
                     <textarea
                       value={textoEditado}
                       onChange={(event) => setTextoEditado(event.target.value)}
@@ -196,7 +198,7 @@ function ListaCapitulos() {
                       <span>Creado: {capitulo.fechaCreacion}</span>
                       <br />
                       {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span>Modificado: {capitulo.fechaModificacion}</span>
+                        <span>Última modificación: {capitulo.fechaModificacion}</span>
                       )}
                     </p>
                     <p className='message'><strong>{mensaje}</strong></p>
@@ -223,10 +225,10 @@ function ListaCapitulos() {
                         : capitulo.texto}
                     </p>
                     <p>
-                      <span>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
+                      <span className='date-info'>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
                       <br />
                       {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span>Modificado: {formatearFecha(capitulo.fechaModificacion)}</span>
+                        <span className='date-info'>Última modificación: {formatearFecha(capitulo.fechaModificacion)}</span>
                       )}
                     </p>
                   </span>
@@ -236,9 +238,7 @@ function ListaCapitulos() {
           ))}
       </ul>
     </div>
-
   ); 
-  
 }
 
 export default ListaCapitulos;
