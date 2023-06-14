@@ -4,13 +4,14 @@ import ListaCapitulos from './components/Capitulos/ListaCapitulos';
 import NuevoPersonaje from './components/Personajes/NuevoPersonaje';
 import ListaPersonajes from './components/Personajes/ListaPersonajes';
 import Notas from './components/Notas/Notas';
+import TituloApp from './components/Titulo/Titulo';
 
 import './App.css';
 
 const PantallaInicio = ({ cambiarPantallaCapitulo, cambiarPantallaPersonaje }) => {
   return (
     <div className='inicio-container'>
-      <h1>StoryCraft</h1>
+      <div><TituloApp /></div>
       <button onClick={cambiarPantallaCapitulo}>Crear un capítulo</button>
       <button onClick={cambiarPantallaPersonaje}>Crear un personaje</button>
       <div className="column-container">
@@ -25,7 +26,8 @@ const PantallaInicio = ({ cambiarPantallaCapitulo, cambiarPantallaPersonaje }) =
 const PantallaNuevoCapitulo = ({ goBack }) => {
   return (
     <div>
-      <h2>Crear nuevo capítulo</h2>
+      <TituloApp />
+      <h2 className='section-titles'>Crear nuevo capítulo</h2>
       <NuevoCapitulo />
       <button onClick={goBack}>Volver</button>
     </div>
@@ -35,7 +37,8 @@ const PantallaNuevoCapitulo = ({ goBack }) => {
 const PantallaNuevoPersonaje = ({ goBack }) => {
   return (
     <div>
-      <h2>Crear nuevo personaje</h2>
+      <TituloApp />
+      <h2 className='section-titles'>Crear nuevo personaje</h2>
       <NuevoPersonaje />
       <button onClick={goBack}>Volver</button>
     </div>

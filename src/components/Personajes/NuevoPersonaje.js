@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import './NuevoPersonaje.css';
 
 // Componente para crear un personaje
