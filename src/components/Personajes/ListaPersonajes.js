@@ -354,7 +354,7 @@ function ListaPersonajes() {
   return (
     <div>
       <div className='section-title'>
-        <h2>{personajes.length > 0 ? 'Personajes:' : 'No hay personajes'}</h2>
+        <h2>{personajes.length > 0 ? 'Personajes' : 'No hay personajes'}</h2>
       </div>
       <ul>
         {Array.isArray(personajes) &&

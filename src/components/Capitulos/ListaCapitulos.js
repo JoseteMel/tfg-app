@@ -159,7 +159,7 @@ function ListaCapitulos() {
   return (
     <div>
       <div className='section-title'>
-        <h2>{capitulos.length > 0 ? 'Capítulos:' : 'No hay capítulos'}</h2>
+        <h2>{capitulos.length > 0 ? 'Capítulos' : 'No hay capítulos'}</h2>
       </div>
       <ul>
         {Array.isArray(capitulos) &&
