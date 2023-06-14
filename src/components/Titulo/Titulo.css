@@ -1,3 +1,16 @@
+.logo-image {
+    max-width: 400px;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    margin-top: 20px;
+  }
+  
+
 .app-title {
     text-align: center;
 }

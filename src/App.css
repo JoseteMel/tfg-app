@@ -37,11 +37,15 @@
   margin: 10px;
   padding: 10px;
   font-size: 16px;
-  background-color: #4285f4;
+  background-color: #537394;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.inicio-container button:hover{
+  background-color: #3c546c;
 }
 
 
@@ -90,11 +94,15 @@ button {
   margin: 10px auto;
   padding: 10px;
   font-size: 16px;
-  background-color: #4285f4;
+  background-color: #537394;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.button:hover{
+  background-color: #3c546c;
 }
 
 .section-titles {

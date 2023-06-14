@@ -1,5 +1,5 @@
 .container {
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -25,24 +25,18 @@
   margin: 20px auto;
   padding: 10px;
   font-size: 16px;
-  background-color: #4285f4;
+  background-color: #537394;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
+.submit-button:hover{
+  background-color: #3c546c;
+}
+
 .message {
   margin-top: 10px;
   color: red;
-}
-
-.form-columns {
-  columns: 2;
-  column-gap: 20px;
-}
-
-.column-container {
-  display: flex;
-  justify-content: space-between;
 }
