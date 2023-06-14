@@ -33,7 +33,7 @@ function ListaCapitulos() {
 
   // Función para formatear la fecha
   function formatearFecha(fecha) {
-    return moment(fecha).format('HH:mm DD/MM/YYYY'); // Aplicar el formato deseado
+    return moment(fecha).format('HH:mm:ss DD/MM/YYYY'); // Aplicar el formato deseado
   }
 
   // Cargar el capítulo seleccionado para editarlo
@@ -195,10 +195,10 @@ function ListaCapitulos() {
                     />
                     <span>{textoEditado.length}</span> <br />
                     <p>
-                      <span>Creado: {capitulo.fechaCreacion}</span>
+                      <span>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
                       <br />
                       {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span>Última modificación: {capitulo.fechaModificacion}</span>
+                        <span>Última modificación: {formatearFecha(capitulo.fechaModificacion)}</span>
                       )}
                     </p>
                     <p className='message'><strong>{mensaje}</strong></p>
@@ -225,12 +225,12 @@ function ListaCapitulos() {
                         : capitulo.texto}
                     </p>
                     <p>
-                      <span className='date-info'>Creado: {formatearFecha(capitulo.fechaCreacion)}</span>
-                      <br />
-                      {capitulo.fechaCreacion !== capitulo.fechaModificacion && (
-                        <span className='date-info'>Última modificación: {formatearFecha(capitulo.fechaModificacion)}</span>
-                      )}
-                    </p>
+                    <span className='date-info'>
+                      {capitulo.fechaCreacion !== capitulo.fechaModificacion
+                        ? `Última modificación: ${formatearFecha(capitulo.fechaModificacion)}`
+                        : `Creado: ${formatearFecha(capitulo.fechaCreacion)}`}
+                    </span>
+                  </p>
                   </span>
                 )}
               </div>

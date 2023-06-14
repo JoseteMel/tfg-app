@@ -59,7 +59,7 @@ function ListaPersonajes() {
 
   // Función para formatear la fecha
   function formatearFecha(fecha) {
-    return moment(fecha).format('HH:mm DD/MM/YYYY'); // Aplicar el formato deseado
+    return moment(fecha).format('HH:mm:ss DD/MM/YYYY'); // Aplicar el formato deseado
   }
 
   // Cargar el personaje seleccionado para editarlo
@@ -525,10 +525,10 @@ function ListaPersonajes() {
                     </label>
                     <br />
                     <p>
-                      <span>Creado: {personaje.fechaCreacion}</span>
+                      <span>Creado: {formatearFecha(personaje.fechaCreacion)}</span>
                       <br />
                       {personaje.fechaCreacion !== personaje.fechaModificacion && (
-                        <span>Última modificación: {personaje.fechaModificacion}</span>
+                        <span>Última modificación: {formatearFecha(personaje.fechaModificacion)}</span>
                       )}
                     </p>
                     <p className='message'><strong>{mensaje}</strong></p>
