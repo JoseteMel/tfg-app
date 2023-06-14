@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NuevoCapitulo from './components/Capitulos/NuevoCapitulo';
 import ListaCapitulos from './components/Capitulos/ListaCapitulos';
 import NuevoPersonaje from './components/Personajes/NuevoPersonaje';
@@ -24,6 +24,20 @@ const PantallaInicio = ({ cambiarPantallaCapitulo, cambiarPantallaPersonaje }) =
 };
 
 const PantallaNuevoCapitulo = ({ goBack }) => {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        goBack();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [goBack]);
+
   return (
     <div>
       <TituloApp />
@@ -35,6 +49,21 @@ const PantallaNuevoCapitulo = ({ goBack }) => {
 };
 
 const PantallaNuevoPersonaje = ({ goBack }) => {
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        goBack();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [goBack]);
+
   return (
     <div>
       <TituloApp />

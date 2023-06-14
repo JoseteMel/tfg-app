@@ -34,9 +34,14 @@ const TextField = () => {
   };
 
   return (
+    <div>
+      <div className='section-title'>
+        <h2>Notas</h2>
+      </div>
       <form>
         <textarea value={nota} placeholder='Escribe tus notas aquí...' onChange={handleChange} onBlur={handleBlur} className='caja-notas'/> <br />
        </form>
+    </div>
   );
 };
 
