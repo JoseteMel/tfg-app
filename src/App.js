@@ -26,50 +26,65 @@ const PantallaInicio = ({ cambiarPantallaCapitulo, cambiarPantallaPersonaje }) =
 const PantallaNuevoCapitulo = ({ goBack }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        goBack();
+      if (event.key === 'Escape') {
+        if (window.confirm('¿Estás seguro de que quieres volver? Los cambios no guardados se perderán.')) {
+          goBack();
+        }
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [goBack]);
+
+  const handleGoBack = () => {
+    if (window.confirm('¿Estás seguro de que quieres volver? Los cambios no guardados se perderán.')) {
+      goBack();
+    }
+  };
 
   return (
     <div>
       <TituloApp />
       <h2 className='section-titles'>Crear nuevo capítulo</h2>
       <NuevoCapitulo />
-      <button onClick={goBack}>Volver</button>
+      <button onClick={handleGoBack}>Volver</button>
     </div>
   );
 };
 
 const PantallaNuevoPersonaje = ({ goBack }) => {
-
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        goBack();
+      if (event.key === 'Escape') {
+        if (window.confirm('¿Estás seguro de que quieres volver? Los cambios no guardados se perderán.')) {
+          goBack();
+        }
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [goBack]);
+
+  const handleGoBack = () => {
+    if (window.confirm('¿Estás seguro de que quieres volver? Los cambios no guardados se perderán.')) {
+      goBack();
+    }
+  };
 
   return (
     <div>
       <TituloApp />
       <h2 className='section-titles'>Crear nuevo personaje</h2>
       <NuevoPersonaje />
-      <button onClick={goBack}>Volver</button>
+      <button onClick={handleGoBack}>Volver</button>
     </div>
   );
 };
