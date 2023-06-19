@@ -534,8 +534,8 @@ function ListaPersonajes() {
                     <p className='message'><strong>{mensaje}</strong></p>
                     <div>
                       <button type="submit">Guardar cambios</button>
-                      <button onClick={cancelarEdicion}>Cancelar</button>
-                      <button onClick={() => eliminarPersonaje(personaje.id)}>Eliminar</button>
+                      <button type='button' onClick={cancelarEdicion}>Cancelar</button>
+                      <button type='button' onClick={() => eliminarPersonaje(personaje.id)}>Eliminar</button>
                     </div>
                   </form>
                 ) : (

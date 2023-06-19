@@ -204,8 +204,8 @@ function ListaCapitulos() {
                     <p className='message'><strong>{mensaje}</strong></p>
                     <div>
                       <button type="submit">Guardar cambios</button>
-                      <button onClick={cancelarEdicion}>Cancelar</button>
-                      <button onClick={() => eliminarCapitulo(capitulo.id)}>
+                      <button type='button' onClick={cancelarEdicion}>Cancelar</button>
+                      <button type='button' onClick={() => eliminarCapitulo(capitulo.id)}>
                         Eliminar
                       </button>
                     </div>
